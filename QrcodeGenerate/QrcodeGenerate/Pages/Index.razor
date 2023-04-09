@@ -1,0 +1,110 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<HeadContent>
+    <CloudHead Title="index" />
+</HeadContent>
+
+
+<section>
+    <div class="qr">
+        <div class="qr-use">
+            <div>
+                <button class="@(Type==0?"_active":"")" @onclick="()=>Type=0">
+                    <QrcodeGenerate.Shared.Icon.VSCard />
+                </button>
+                <button class="@(Type==1?"_active":"")" @onclick="()=>Type=1">
+                    <QrcodeGenerate.Shared.Icon.Url />
+                </button>
+            </div>
+            <div>
+                <button class="--button _primary" @onclick="Download">Download As SVG</button>
+            </div>
+        </div>
+        <div class="qr-form">
+            @if (Type == 0)
+            {
+                <div>
+                    <div class="--input">
+                        <span>Name:</span>
+                        <input type="text" @bind-value="@Name" spellcheck="false" />
+                    </div>
+                    <div class="--input">
+                        <span>phone:</span>
+                        <input type="text" @bind-value="@Phone" spellcheck="false" />
+                    </div>
+                    <div class="--input">
+                        <span>Email:</span>
+                        <input type="text" @bind-value="@email" spellcheck="false" />
+                    </div>
+                    <div class="--input">
+                        <span>Work:</span>
+                        <input type="text" @bind-value="Work" spellcheck="false" />
+                    </div>
+                </div>
+            }
+            else if (Type == 1)
+            {
+                <div>
+                    <div class="--input _url">
+                        <span>Url:</span>
+                        <input type="text" @bind-value="@Url" spellcheck="false" />
+                    </div>
+                </div>
+            }
+            <div class="qr-submit">
+                <button class="--button _primary" @onclick="Generate">Generate</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if(!string.IsNullOrEmpty(Svg))
+{
+    <section>
+    <div class="template">
+        <div class="template-view">
+            @Ms
+        </div>
+        <div class="template-display">
+            <div class="--input">
+                <span>Name:</span>
+                <input type="text" @bind-value="NameDownload" spellcheck="false" />
+            </div>
+            <div class="--input">
+                <span>Color:</span>
+                <input type="color" @bind-value="Color" @oninput="HandleColorChange" />
+            </div>  
+            <div class="icon">
+                <span>Icons:</span>
+                <div>
+                    <button onclick="@(() => ChangeIcon("none"))">
+                        <QrcodeGenerate.Shared.Icon.Assets.Null />
+                    </button>
+                    <button onclick="@(() => ChangeIcon("coverbox"))">
+                        <QrcodeGenerate.Shared.Icon.Assets.Coverbox />
+                    </button>
+                    <button onclick="@(() => ChangeIcon("facebook"))">
+                        <QrcodeGenerate.Shared.Icon.Assets.Facebook />
+                    </button>
+                    <button onclick="@(() => ChangeIcon("instagram"))">
+                        <QrcodeGenerate.Shared.Icon.Assets.Instagram />
+                    </button>
+                    <button onclick="@(() => ChangeIcon("youtube"))">
+                        <QrcodeGenerate.Shared.Icon.Assets.Youtube />
+                    </button>
+                    <button onclick="@(() => ChangeIcon("linkedin"))">
+                        <QrcodeGenerate.Shared.Icon.Assets.Linkedin />
+                    </button>
+                </div>
+            </div>
+            <div class="--input">
+                <span>Add Icon:</span>
+                    <InputFile  OnChange="HandleFileSelect" />
+                </div>
+        </div>
+    </div>
+</section>
+}
+
+

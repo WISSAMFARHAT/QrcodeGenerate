@@ -1,0 +1,90 @@
+﻿@import 'Common/variable.less';
+
+body {
+    main {
+
+        section {
+            .form {
+
+                > div:first-child {
+                    display: flex;
+                    align-items: baseline;
+                    justify-items: center;
+                    gap: 20px;
+                    flex-direction: column;
+
+                    ._email {
+                        grid-column-start: 2;
+                        grid-column-end: 4;
+                    }
+
+                    .area {
+
+                        textarea {
+                            height: 100px;
+                        }
+                    }
+
+                    .photo {
+                        label {
+                            span {
+                                svg {
+                                    .--amc-fill {
+                                        transition: all 1s ease-in-out;
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                span {
+                                    color: white;
+
+                                    svg {
+                                        .--amc-fill {
+                                            fill: white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-subnit {
+                    float: right;
+                    margin-block: 20px;
+                    display: flex;
+                    justify-content: end;
+                    width: 100%;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+
+@media @break-medium
+{
+    body {
+        main {
+            section {
+                .form {
+                    margin-inline: 100px;
+
+                    > div:first-child {
+                        display: grid;
+                        align-items: center;
+                        justify-items: center;
+                        gap: 20px;
+                        grid-template-columns: repeat(3,1fr);
+                    }
+
+                    &-subnit {
+                        width:200px;
+                        }
+                    }
+                }
+            }
+        }
+    }

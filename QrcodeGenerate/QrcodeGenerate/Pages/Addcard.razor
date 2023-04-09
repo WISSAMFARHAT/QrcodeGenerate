@@ -1,0 +1,68 @@
+﻿@page "/addCard"
+@inject IJSRuntime JS
+
+<HeadContent>
+    <CloudHead Title="AddCard" />
+</HeadContent>
+
+<section>
+    <div class="form">
+        <div>
+            <span>Name:</span>
+            <div class="--input">
+                <span>First Name:</span>
+                <input type="text" @bind-value="@FirstName" spellcheck="false" />
+            </div>
+            <div class="--input">
+                <span>Last Name:</span>
+                <input type="text" @bind-value="@LastName" spellcheck="false" />
+            </div>
+
+            <span>Number:</span>
+            <div class="--input">
+                <span>Mobile:</span>
+                <input type="text" @bind-value="@Mobile" spellcheck="false" />
+            </div>
+            <div class="--input">
+                <span>Work phone:</span>
+                <input type="text" @bind-value="@PhoneWork" spellcheck="false" />
+            </div>
+
+            <span>Email:</span>
+            <div class="--input _email">
+                <span>Email:</span>
+                <input type="text" @bind-value="@Email" spellcheck="false" />
+            </div>
+
+            <span>Company:</span>
+            <div class="--input">
+                <span>Name Comapny:</span>
+                <input type="text" @bind-value="@Company" spellcheck="false" />
+            </div>
+            <div class="--input">
+                <span>Job Title:</span>
+                <input type="text" @bind-value="@JobTitle" spellcheck="false" />
+            </div>
+
+            <span>Address:</span>
+            <div class="--input _email area">
+                <span>Your Address:</span>
+                <textarea spellcheck="false" @bind="@Address"></textarea>
+            </div>
+
+            <span>Photo:</span>
+            <div class="--input _email photo">
+                <span>@(string.IsNullOrEmpty(FileInput) ? "Your Image:" : FileInput)</span>
+                <label for="image" class="--button _upload _icon">
+                    <span><QrcodeGenerate.Shared.Icon.Download /></span>
+                    <span>Upload</span>
+                </label>
+                <InputFile OnChange="OnFileSelected" id="image" hidden />
+            </div>
+        </div>
+        <div class="form-subnit">
+            <button class="--button _primary" @onclick="@Save">Save To Contacts</button>
+        </div>
+    </div>
+</section>
+

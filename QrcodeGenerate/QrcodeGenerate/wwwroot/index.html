@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>QrcodeGenerate</title>
+    <base href="/" />
+    <link rel="icon" href="/img/WissamLogo.png" type="image/icon type">
+    <link rel="stylesheet" href="css/site.min.css">
+</head>
+
+<body>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        .loading {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .loading .loading-img {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 150px;
+                height: 150px;
+            }
+
+                .loading .loading-img img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                }
+
+                .loading .loading-img::after {
+                    content: "";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    width: 250px;
+                    height: 250px;
+                    border: 4px solid #454545;
+                    border-left-color: transparent;
+                    border-right-color: transparent;
+                    border-radius: 100%;
+                    transition: all 0.5s;
+                    -webkit-animation: rotate 1s ease infinite;
+                    animation: rotate 1s ease infinite
+                }
+
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg)
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                -webkit-transform: translate(-50%, -50%) rotate(360deg);
+                transform: translate(-50%, -50%) rotate(360deg)
+            }
+        }
+    </style>
+    <div id="app">
+        <div class="loading">
+            <div class="loading-img">
+                <img src="/img/WissamLogo.png" alt="logo" />
+            </div>
+        </div>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        async function download(name, contentFile, type) {
+            var link = document.createElement("a");
+
+            link.download = name;
+            link.href = "data:" + type + ";charset=utf-8," + encodeURIComponent(contentFile);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+        }
+
+    </script>
+</body>
+</html>

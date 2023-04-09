@@ -1,0 +1,35 @@
+﻿@import "variable.less";
+
+body {
+    .Header {
+        padding-block: 10px;
+        background-color: var(--colorWhite);
+        box-shadow: var(--box-shadow);
+
+        > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-logo {
+            width: 150px;
+            height: auto;
+
+            img{
+                width:50px;
+            }
+           
+        }
+    }
+}
+
+@media @break-medium {
+    body {
+        .Header {
+            &-logo {
+                width: 200px;
+            }
+        }
+    }
+}
